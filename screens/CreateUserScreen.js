@@ -1,23 +1,76 @@
-import { View, Text, TextInput, ScrollView, Button } from 'react-native'
-import React from 'react'
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  Button,
+  StyleSheet,
+} from "react-native";
+import firebase from "firebase";
 
 const CreateUserScreen = () => {
+  const [state, setState] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  const handleChangeText = (name, value) => {
+    setState({ ...state, [name]: value });
+  };
+
+  const saveNewUser = async () => {
+    if (state.name === "") {
+      alert("Name is required");
+    } else {
+      await firebase.db.collection("users").add({
+        name: state.name,
+        email: state.email,
+        phone: state.phone,
+      });
+    }
+  };
+
   return (
-    <ScrollView>
-      <View>
-        <TextInput placeholder='Name user'/>
+    <ScrollView style={styles.container}>
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Name user"
+          onChangeText={(value) => handleChangeText("name", value)}
+        />
+      </View>
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Email user"
+          onChangeText={(value) => handleChangeText("email", value)}
+        />
+      </View>
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Phone user"
+          onChangeText={(value) => handleChangeText("phone", value)}
+        />
       </View>
       <View>
-        <TextInput placeholder='Email user'/>
-      </View>
-      <View>
-        <TextInput placeholder='Phone user'/>
-      </View>
-      <View>
-        <Button title='Save user'/>
+        <Button title="Save user" onPress={() => saveNewUser()} />
       </View>
     </ScrollView>
-  )
-}
+  );
+};
 
-export default CreateUserScreen
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 35,
+  },
+  inputGroup: {
+    flex: 1,
+    padding: 0,
+    marginBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#cccccc",
+  },
+});
+
+export default CreateUserScreen;
