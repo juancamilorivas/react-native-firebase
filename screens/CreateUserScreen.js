@@ -7,7 +7,7 @@ import {
   Button,
   StyleSheet,
 } from "react-native";
-import firebase from "firebase";
+import firebase from "../database/firebase";
 
 const CreateUserScreen = () => {
   const [state, setState] = useState({
@@ -29,6 +29,7 @@ const CreateUserScreen = () => {
         email: state.email,
         phone: state.phone,
       });
+      alert('Saved')
     }
   };
 
