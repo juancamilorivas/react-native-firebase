@@ -1,7 +1,11 @@
+import React, {useState, useEffect} from 'react'
 import { View, Text } from 'react-native'
-import React from 'react'
+import firebase from '../database/firebase'
 
 const UserList = () => {
+  
+const [users, setUsers] = useState([])
+
   return (
     <View>
       <Text>UserList</Text>

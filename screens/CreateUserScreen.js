@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 
-const CreateUserScreen = () => {
+const CreateUserScreen = (props) => {
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -24,12 +24,16 @@ const CreateUserScreen = () => {
     if (state.name === "") {
       alert("Name is required");
     } else {
-      await firebase.db.collection("users").add({
-        name: state.name,
-        email: state.email,
-        phone: state.phone,
-      });
-      alert('Saved')
+      try {
+        await firebase.db.collection("users").add({
+          name: state.name,
+          email: state.email,
+          phone: state.phone,
+        });
+        props.navigation.navigate("UserList");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
