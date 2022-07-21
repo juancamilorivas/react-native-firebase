@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -11,9 +10,9 @@ const Stack = createNativeStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="UserList" component={UserList} />
-      <Stack.Screen name="CreateUserScreen" component={CreateUserScreen} />
-      <Stack.Screen name="UserDetailScreen" component={UserDetailScreen} />
+      <Stack.Screen name="UserList" component={UserList} options={{title: 'Users list'}}/>
+      <Stack.Screen name="CreateUserScreen" component={CreateUserScreen} options={{title: 'Create user'}}/>
+      <Stack.Screen name="UserDetailScreen" component={UserDetailScreen} options={{title: 'User detail'}}/>
     </Stack.Navigator>
   );
 }
