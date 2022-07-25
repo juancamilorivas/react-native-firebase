@@ -5,7 +5,7 @@
 
 ## About the project
 
-Created with [Expo](https://expo.dev/) and [Javascript](https://www.typescriptlang.org). CRUD that render a list of user connected to a Firebase database using Firestore.
+Created with [Expo](https://expo.dev/) and [Javascript](https://www.typescriptlang.org). CRUD that render a list of users connected to a Firebase-database using Firestore.
 
 ## Available Scripts
 
